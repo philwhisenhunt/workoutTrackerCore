@@ -1,6 +1,10 @@
 
 <%= form_for @exercise_set, :url => { :action => "create" } do |f| %>
+    <%= f.label :exercise_type %>
     <%= f.text_field :exercise_type %>
+    <br>
+    <%= f.label :rep_count %>
     <%= f.number_field :rep_count %>
+    <br>
     <%= submit_tag "Log it" %>
 <% end %>
