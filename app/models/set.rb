@@ -1,2 +1,0 @@
-class Set < ApplicationRecord
-end
