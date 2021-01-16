@@ -20,9 +20,7 @@ class ExerciseSetsController < ApplicationController
   end
 
   def destroy
-    ExerciseSet.find_by(params)
-
-    ExerciseSet.destroy
+    @ExerciseSet.destroy
   end
 
   def update
