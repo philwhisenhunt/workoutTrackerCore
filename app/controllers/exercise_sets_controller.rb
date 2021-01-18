@@ -16,11 +16,7 @@ class ExerciseSetsController < ApplicationController
   end
 
   def edit
-if @exercise_set.save
-  redirect_to @exercise_set
-else
-  flash[:error] = "Didn't save changes"
-  redirect_to @exercise_set
+
   end
 
   def destroy
@@ -28,7 +24,11 @@ else
   end
 
   def update
-   
+    if @exercise_set.save
+      redirect_to @exercise_set
+    else
+      flash[:error] = "Didn't save changes"
+      redirect_to @exercise_set
   end
 
   def show
