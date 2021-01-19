@@ -29,6 +29,7 @@ class ExerciseSetsController < ApplicationController
     else
       flash[:error] = "Didn't save changes"
       redirect_to @exercise_set
+    end
   end
 
   def show
