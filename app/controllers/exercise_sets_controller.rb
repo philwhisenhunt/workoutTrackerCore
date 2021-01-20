@@ -33,7 +33,13 @@ class ExerciseSetsController < ApplicationController
   end
 
   def show
-    
+    respond_to do |format|
+      format.html do 
+      end
+      format.json do
+        render json: @exercise_set
+       end
+    end
   end
 
   def exercise_set_params
