@@ -39,6 +39,7 @@ class ExerciseSetsController < ApplicationController
   def exercise_set_params
     params.require(:exercise_set).permit(
       :exercise_type,
+      :weight,
       :rep_count
     )
   end
