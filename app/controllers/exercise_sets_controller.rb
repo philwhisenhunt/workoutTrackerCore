@@ -6,12 +6,26 @@ class ExerciseSetsController < ApplicationController
   end
 
   def create
+    byebug
+
     @exercise_set = ExerciseSet.new(exercise_set_params)
-    if @exercise_set.save
-      redirect_to @exercise_set
-    else
-      flash[:error] = "Didn't save"
-      render :new
+    respond_to do |format|
+      format.html do 
+        if @exercise_set.save
+          redirect_to @exercise_set
+        else
+          flash[:error] = "Didn't save"
+          render :new
+        end
+      end
+
+      format.json do
+        if @exercise_set.save
+          render json: @exercise_set
+        else
+          render json: "Failed to save."
+       end
+      end
     end
   end
 
