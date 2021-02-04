@@ -6,8 +6,7 @@ class ExerciseSetsController < ApplicationController
   end
 
   def create
-    # byebug
-
+ 
     @exercise_set = ExerciseSet.new(exercise_set_params)
     respond_to do |format|
       format.html do 
