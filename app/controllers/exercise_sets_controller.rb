@@ -6,26 +6,32 @@ class ExerciseSetsController < ApplicationController
   end
 
   def create
- 
-    @exercise_set = ExerciseSet.new(exercise_set_params)
-    respond_to do |format|
-      format.html do 
-        if @exercise_set.save
-          redirect_to @exercise_set
-        else
-          flash[:error] = "Didn't save"
-          render :new
-        end
-      end
-
-      format.json do
-        if @exercise_set.save
-          render json: @exercise_set
-        else
-          render json: "Failed to save."
-       end
-      end
+    exercise_sets = []
+    params[:exercises].each do |key, value|
+    Rails.logger.info "#{key} -> #{value}"
+    exercise_set = ExerciseSet.create(exercise_type: key, rep_count: value, occured: Time.zone.now.beginning_of_day)
+    exercise_sets << exercise_set
     end
+    render json:{exercise_sets: exercise_sets}
+    # @exercise_set = ExerciseSet.new(exercise_set_params)
+    # respond_to do |format|
+    #   format.html do 
+    #     if @exercise_set.save
+    #       redirect_to @exercise_set
+    #     else
+    #       flash[:error] = "Didn't save"
+    #       render :new
+    #     end
+    #   end
+
+    #   format.json do
+    #     if @exercise_set.save
+    #       render json: @exercise_set
+    #     else
+    #       render json: "Failed to save."
+    #    end
+    #   end
+    # end
   end
 
   def edit
