@@ -15,6 +15,8 @@ class ExerciseSetsController < ApplicationController
       current_rep_count = current_set.rep_count
       current_set.update(rep_count: current_rep_count + value)
     end
+    # How to make this only scoped to the current day?
+    # And how to provide a total for the week?
 
     exercise_set = ExerciseSet.create(exercise_type: key, rep_count: value, occured: Time.zone.now.beginning_of_day)
     exercise_sets << exercise_set
