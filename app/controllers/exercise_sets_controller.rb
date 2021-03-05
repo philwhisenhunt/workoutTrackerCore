@@ -9,6 +9,13 @@ class ExerciseSetsController < ApplicationController
     exercise_sets = []
     params[:exercises].each do |key, value|
     Rails.logger.info "#{key} -> #{value}"
+
+    #try this out
+    if current_set = ExerciseSet.find_by(exercise_type: key)
+      current_rep_count = current_set.rep_count
+      current_set.update(rep_count: current_rep_count + value)
+    end
+
     exercise_set = ExerciseSet.create(exercise_type: key, rep_count: value, occured: Time.zone.now.beginning_of_day)
     exercise_sets << exercise_set
     end
