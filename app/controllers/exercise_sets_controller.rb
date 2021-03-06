@@ -10,10 +10,14 @@ class ExerciseSetsController < ApplicationController
     params[:exercises].each do |key, value|
     Rails.logger.info "#{key} -> #{value}"
 
+    current_day = Time.zone.day
+
+
     #try this out
-    if current_set = ExerciseSet.find_by(exercise_type: key)
+    if current_set = ExerciseSet.find_by(exercise_type: key) && current_set.occurred == current_day
       current_rep_count = current_set.rep_count
       current_set.update(rep_count: current_rep_count + value)
+      
     end
     # How to make this only scoped to the current day?
     # And how to provide a total for the week?
