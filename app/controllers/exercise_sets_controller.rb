@@ -10,7 +10,8 @@ class ExerciseSetsController < ApplicationController
     params[:exercises].each do |key, value|
     Rails.logger.info "#{key} -> #{value}"
 
-    current_day = Time.zone.day
+    current_day = Time.zone.now.to_s
+    #but then how to get the first part? Convert to array and trim?
 
 
     #try this out
