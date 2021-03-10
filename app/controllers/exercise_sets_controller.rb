@@ -18,13 +18,13 @@ class ExerciseSetsController < ApplicationController
     if current_set = ExerciseSet.find_by(exercise_type: key) && current_set.occurred == current_day
       current_rep_count = current_set.rep_count
       current_set.update(rep_count: current_rep_count + value)
-      
+    else
+      exercise_set = ExerciseSet.create(exercise_type: key, rep_count: value, occured: Time.zone.now.beginning_of_day)
+      exercise_sets << exercise_set
     end
     # How to make this only scoped to the current day?
     # And how to provide a total for the week?
 
-    exercise_set = ExerciseSet.create(exercise_type: key, rep_count: value, occured: Time.zone.now.beginning_of_day)
-    exercise_sets << exercise_set
     end
     render json:{exercise_sets: exercise_sets}
     # @exercise_set = ExerciseSet.new(exercise_set_params)
