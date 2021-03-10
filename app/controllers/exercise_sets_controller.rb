@@ -18,7 +18,7 @@ class ExerciseSetsController < ApplicationController
     if (current_set = ExerciseSet.find_by(exercise_type: key)) && current_set.occurred == current_day
       byebug
       current_rep_count = current_set.rep_count
-      current_set.update(rep_count: current_rep_count + value)
+      current_set.update(rep_count: current_rep_count + (value - current_rep_count))
     else
     
 
